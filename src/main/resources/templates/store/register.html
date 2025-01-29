@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>가게 및 메뉴 등록</title>
     <link rel="stylesheet" href="/css/store-register.css">
+    <!-- 카카오 API를 head에 추가 -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a2202de557d11adf330ea62cb28a7b95&libraries=services"></script>
 </head>
 <body>
     <div class="container">
@@ -12,31 +15,33 @@
             <div class="form-group">
                 <label for="name">가게명 *</label>
                 <input type="text" id="name" name="name" required>
-                <div class="error-message" th:if="${#fields.hasErrors('name')}" 
-                     th:errors="*{name}"></div>
+            </div>
+            <h3>상점 이미지 등록</h3>
+            <div class="form-group">
+                <label>가게 이미지</label>
+                <input type="file" class="store-image" accept="image/*" onchange="storeImageUpload(this)">
+                <input type="hidden" id="storeImageUrl" name="imageUrl">
+            </div>
+            <div class="form-group">
+                <label for="location">주소 *</label>
+                <input type="text" id="address" readonly required>
+                <button type="button" class="btn search-btn" id="searchAddressBtn">주소 검색</button>
             </div>
             
             <div class="form-group">
-                <label for="location">위치 *</label>
-                <input type="text" id="location" name="location" required>
+                <label for="detailAddress">상세주소 *</label>
+                <input type="text" id="detailAddress" required>
             </div>
             
-            <div class="form-group">
-                <label for="latitude">위도 *</label>
-                <input type="number" id="latitude" name="latitude" 
-                       step="0.00000001" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="longitude">경도 *</label>
-                <input type="number" id="longitude" name="longitude" 
-                       step="0.00000001" required>
-            </div>
+            <input type="hidden" id="location" name="location">
             
             <div class="form-group">
                 <label for="phone">전화번호</label>
                 <input type="tel" id="phone" name="phone">
             </div>
+            
+            <input type="hidden" id="latitude" name="latitude">
+            <input type="hidden" id="longitude" name="longitude">
             
             <h3>메뉴 등록</h3>
             <div id="menuList"></div>
@@ -48,6 +53,7 @@
         </form>
     </div>
     
+    <!-- JavaScript를 body 끝에 추가 -->
     <script src="/js/store-register.js"></script>
 </body>
 </html>

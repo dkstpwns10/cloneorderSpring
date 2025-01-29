@@ -28,10 +28,10 @@ public class Store {
     @Column(nullable = false)
     private String location;
     
-    @Column(nullable = false, precision = 10, scale = 8)
+    @Column(nullable = false, precision = 17, scale = 14)
     private BigDecimal latitude;
     
-    @Column(nullable = false, precision = 11, scale = 8)
+    @Column(nullable = false, precision = 17, scale = 14)
     private BigDecimal longitude;
     
     @Column(precision = 3, scale = 2)
@@ -50,5 +50,8 @@ public class Store {
     @UpdateTimestamp
     @Column(nullable = false)
     private ZonedDateTime updatedAt;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 }
 

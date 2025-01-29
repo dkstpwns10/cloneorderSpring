@@ -26,4 +26,9 @@ public class MenuService {
         
         menuRepository.delete(menu);
     }
+
+    @Transactional
+    public List<Menu> saveMenus(List<Menu> menus) {
+        return menuRepository.saveAll(menus);
+    }
 }
